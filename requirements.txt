@@ -1,0 +1,7 @@
+scikit-learn==1.6.0
+pandas==2.2.3
+numpy==2.2.0
+# streamlit==1.41.0
+# pyarrow==16.0.0
+pytest==8.3.4
+joblib==1.4.2
