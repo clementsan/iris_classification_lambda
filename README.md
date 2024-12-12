@@ -1,9 +1,8 @@
 # IRIS classification task with AWS Lambda
 
 ## Workflow: use of AWS lambda function for deployment
-Steps to Deploy
 
-### Training the Model:
+### Training the model:
 
 bash
 > python train.py
@@ -22,11 +21,14 @@ bash
 
 ### Testing locally:
 
-Use a tool like curl to send a test request:
+curl example with a test request:
 
 bash
-> curl -XPOST "http://localhost:8080/2015-03-31/functions/function/invocations" -d '{"body": "{\"features\": [[6.5, 3.0, 5.8, 2.2], [6.1, 2.8, 4.7, 1.2]]}"}'
+> curl -X POST "http://localhost:8080/2015-03-31/functions/function/invocations" -d '{"body": "{\"features\": [[6.5, 3.0, 5.8, 2.2], [6.1, 2.8, 4.7, 1.2]]}"}'
 
-Deploy to AWS Lambda: Package the code and dependencies, then upload to AWS Lambda via the AWS Management Console or AWS CLI.
+### Deployment to AWS
 
-This setup provides a complete pipeline from training the model to deploying it on AWS Lambda.
+Steps:
+ - Pushing the docker container to AWS ECR
+ - Creating and testing a Lambda function
+ - Creating an API via API Gateway
