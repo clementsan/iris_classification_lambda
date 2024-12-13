@@ -18,7 +18,7 @@ def requests():
 
 @pytest.fixture
 def response():
-    return ['virginica', 'versicolor']
+    return ["virginica", "versicolor"]
 
 def test_response(setup_pipeline, requests, response):
-    assert response == setup_pipeline.load_and_test(requests)['predictions']
+    assert response == setup_pipeline.load_and_test(requests)["predictions"]
