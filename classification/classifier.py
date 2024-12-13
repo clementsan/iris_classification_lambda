@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 import joblib
 import pandas as pd
 import os
-
+import numpy as np
 
 class Classifier:
     def __init__(self):
@@ -41,10 +41,10 @@ class Classifier:
         model_path = os.path.join(parent_dir, "models", "model.pkl")
         model = joblib.load(model_path)
 
-        features = data.get('features', [])
+        features = np.array(data['features'])
 
-        if not isinstance(features, list) or not all(isinstance(sample, list) for sample in features):
-            raise ValueError("Input data should be a list of feature vectors.")
+        if features.shape[-1] != 4:
+            raise ValueError("Expected 4 features per input.")
 
         # Predict the class
         predictions = model.predict(features).tolist()
