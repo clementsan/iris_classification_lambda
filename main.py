@@ -16,7 +16,7 @@ if __name__ == "__main__":
     results = cls.load_and_test(data)
     print("results:", results)
 
-    # Response similar to HTTP call
+    # Response similar to REST API call
     response = {
         'statusCode': 200,
         'body': json.dumps({
@@ -24,4 +24,4 @@ if __name__ == "__main__":
             'probabilities': results["probabilities"]
         })
     }
-    print("Example Full API response: ", response)
+    print("Example REST API response: ", response)
