@@ -41,7 +41,7 @@ class Classifier:
         model_path = os.path.join(parent_dir, "models", "model.pkl")
         model = joblib.load(model_path)
 
-        features = np.array(data['features'])
+        features = np.array(data["features"])
 
         if features.shape[-1] != 4:
             raise ValueError("Expected 4 features per input.")
@@ -51,7 +51,7 @@ class Classifier:
         probabilities = model.predict_proba(features).tolist()
 
         # Map predictions to class labels
-        iris_types = {0: 'setosa', 1: 'versicolor', 2: 'virginica'}
+        iris_types = {0: "setosa", 1: "versicolor", 2: "virginica"}
         prediction_labels = [iris_types[pred] for pred in predictions]
 
         return {"predictions": prediction_labels, "probabilities": probabilities}
