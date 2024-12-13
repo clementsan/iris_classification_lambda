@@ -10,7 +10,6 @@ def lambda_handler(event, context):
         data = json.loads(event.get('body', '{}'))
 
         response = cls.load_and_test(data)
-        print("Lambda response: ", response)
 
         return {
             'statusCode': 200,
