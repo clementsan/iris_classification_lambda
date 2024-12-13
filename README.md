@@ -1,6 +1,6 @@
 # IRIS classification task with AWS Lambda
 
-## Workflow: use of AWS lambda function for deployment
+Workflow: use of AWS lambda function for deployment
 
 ### Training the model:
 
@@ -10,21 +10,22 @@ bash
 ### Building the docker image:
 
 bash
-> docker build -t iris-lambda .
+> docker build -t iris-classification-lambda .
 
 ### Running the docker container locally:
 
 bash
 
-> docker run --name iris-lambda-cont -p 8080:8080 iris-lambda
+> docker run --name iris-classification-lambda-cont -p 8080:8080 iris-classification-lambda
 
 
 ### Testing locally:
 
-curl example with a test request:
+Example of a prediction request via curl command
 
 bash
 > curl -X POST "http://localhost:8080/2015-03-31/functions/function/invocations" -d '{"body": "{\"features\": [[6.5, 3.0, 5.8, 2.2], [6.1, 2.8, 4.7, 1.2]]}"}'
+
 
 ### Deployment to AWS
 
