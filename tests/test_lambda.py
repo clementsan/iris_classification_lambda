@@ -11,7 +11,9 @@ from lambda_function import lambda_handler
 
 @pytest.fixture
 def event():
-    json_event = {"body": "{\"features\": [[6.5, 3.0, 5.8, 2.2], [6.1, 2.8, 4.7, 1.2]]}"}
+    json_event = {
+        "features": [[6.5, 3.0, 5.8, 2.2], [6.1, 2.8, 4.7, 1.2]]
+    }
     return json_event
 
 @pytest.fixture
