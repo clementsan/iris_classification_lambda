@@ -21,4 +21,4 @@ def response():
     return ["virginica", "versicolor"]
 
 def test_response(setup_pipeline, requests, response):
-    assert response == setup_pipeline.load_and_test(requests)["predictions"]
+    assert response == setup_pipeline.load_and_test(requests["features"])["predictions"]

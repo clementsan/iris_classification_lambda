@@ -41,7 +41,7 @@ class Classifier:
         model_path = os.path.join(parent_dir, "models", "model.pkl")
         model = joblib.load(model_path)
 
-        features = np.array(data["features"])
+        features = np.array(data)
 
         if features.shape[-1] != 4:
             raise ValueError("Expected 4 features per input.")

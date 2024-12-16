@@ -9,11 +9,11 @@ if __name__ == "__main__":
     cls.train_and_save()
 
     # Testing
-    data = { "features": [
-        [6.5, 3.0, 5.8, 2.2],
-        [6.1, 2.8, 4.7, 1.2]
-    ]}
-    results = cls.load_and_test(data)
+    data = {
+        "features": [[6.5, 3.0, 5.8, 2.2],[6.1, 2.8, 4.7, 1.2]]
+    }
+    features = data["features"]
+    results = cls.load_and_test(features)
     print("results:", results)
 
     # Response similar to REST API call
