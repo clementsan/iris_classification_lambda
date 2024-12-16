@@ -21,10 +21,13 @@ bash
 
 ### Testing locally:
 
-Example of a prediction request via curl command
+Example of a prediction request
 
 bash
-> curl -X POST "http://localhost:8080/2015-03-31/functions/function/invocations" -d '{"body": "{\"features\": [[6.5, 3.0, 5.8, 2.2], [6.1, 2.8, 4.7, 1.2]]}"}'
+> curl -X POST "http://localhost:8080/2015-03-31/functions/function/invocations" -H "Content-Type: application/json" -d '{"features": [[6.5, 3.0, 5.8, 2.2], [6.1, 2.8, 4.7, 1.2]]}'
+
+python
+> python3 inference_api.py --url http://localhost:8080/2015-03-31/functions/function/invocations -d '{"features": [[6.5, 3.0, 5.8, 2.2], [6.1, 2.8, 4.7, 1.2]]}'
 
 
 ### Deployment to AWS
