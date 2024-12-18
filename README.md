@@ -1,3 +1,15 @@
+---
+title: IRIS Classification Lambda
+emoji: 🏢
+colorFrom: indigo
+colorTo: blue
+sdk: gradio
+sdk_version: 5.5.0
+app_file: app.py
+pinned: false
+short_description: IRIS Classification Lambda
+---
+
 # IRIS classification task with AWS Lambda
 
 Workflow: use of AWS lambda function for deployment
