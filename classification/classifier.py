@@ -43,7 +43,9 @@ class Classifier:
         model = joblib.load(model_path)
 
         features = np.array(data)
-        
+        if len(features.shape) == 1:
+            features = features.reshape(1, -1)
+
         if features.shape[-1] != 4:
             raise ValueError("Expected 4 features per input.")
 
