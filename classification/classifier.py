@@ -1,4 +1,5 @@
-from sklearn.ensemble import AdaBoostClassifier
+# from sklearn.ensemble import AdaBoostClassifier
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 import joblib
@@ -13,13 +14,13 @@ class Classifier:
     def train_and_save(self):
         print("\nIRIS model training...")
         iris = load_iris()
-        ada = AdaBoostClassifier(n_estimators=5)
+        cart = DecisionTreeClassifier(max_depth = 3)
 
         X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.1, random_state=42)
-        model = ada.fit(X_train, y_train)
+        model = cart.fit(X_train, y_train)
 
-        print(f"Model score: {ada.score(X_train, y_train):.3f}")
-        print(f"Test Accuracy: {ada.score(X_test, y_test):.3f}")
+        print(f"Model score: {cart.score(X_train, y_train):.3f}")
+        print(f"Test Accuracy: {cart.score(X_test, y_test):.3f}")
 
         current_dir = os.path.dirname(os.path.abspath(__file__))
         parent_dir = os.path.dirname(current_dir)
@@ -42,7 +43,7 @@ class Classifier:
         model = joblib.load(model_path)
 
         features = np.array(data)
-
+        
         if features.shape[-1] != 4:
             raise ValueError("Expected 4 features per input.")
 
