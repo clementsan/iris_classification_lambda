@@ -14,26 +14,34 @@ short_description: IRIS Classification Lambda
 
 Workflow: use of AWS lambda function for deployment
 
-## Local development
 
-### Training the model:
+<b>Menu: </b>
+ - [Local development](#1-local-development)
+ - [AWS deployment](#2-deployment-to-aws)
+
+
+## 1. Local development
+
+### 1.1 Training the ML model
 
 bash
 > python train.py
 
-### Building the docker image:
+### 1.2. Docker container
+
+ - Building the docker image
 
 bash
 > docker build -t iris-classification-lambda .
 
-### Running the docker container locally:
+ - Running the docker container
 
 bash
 
 > docker run --name iris-classification-lambda-cont -p 8080:8080 iris-classification-lambda
 
 
-### Testing locally:
+### 1.3. Execution via command line
 
 Example of a prediction request
 
@@ -44,9 +52,24 @@ python
 > python3 inference_api.py --url http://localhost:8080/2015-03-31/functions/function/invocations -d '{"features": [[6.5, 3.0, 5.8, 2.2], [6.1, 2.8, 4.7, 1.2]]}'
 
 
-## Deployment to AWS
+### 1.4. Execution via user interface
 
-### Pushing the docker container to AWS ECR
+Use of Gradio library for web interface
+
+<b>Note:</b> The environment variable ```AWS_API``` should point to the local container
+> export AWS_API=http://localhost:8080
+
+Command line for execution:
+> python3 app.py
+
+The Gradio web application should now be accessible at http://localhost:7860
+
+
+## 2. Deployment to AWS
+
+### 2.1. Pushing the docker container to AWS ECR
+
+<details>
 
 Steps:
  - Create new ECR Repository via aws console
@@ -66,9 +89,13 @@ Example: ```iris-classification-lambda```
  - Push docker image to ECR
 > docker push <aws_account_id>.dkr.ecr.<aws_region>.amazonaws.com/iris-classification-lambda:latest
 
-[Link to AWS Documention](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html)
+</details>
 
-### Creating and testing a Lambda function
+[Link to AWS ECR Documention](https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html)
+
+### 2.2. Creating and testing a Lambda function
+
+<details>
 
 <b>Steps</b>: 
  - Create function from container image
@@ -89,9 +116,11 @@ Advanced notes:
  - Steps to update the Lambda function with latest container via aws cli:
 > aws lambda update-function-code --function-name iris-classification --image-uri <aws_account_id>.dkr.ecr.<aws_region>.amazonaws.com/iris-classification-lambda:latest
 
+</details>
 
-### Creating an API via API Gateway
+### 2.3. Creating an API via API Gateway
 
+<details>
 
 <b>Steps</b>: 
  - Create a new ```Rest API``` (e.g. ```iris-classification-api```)
@@ -101,5 +130,18 @@ Advanced notes:
    - Notes: using proxy integration option unchecked
  - Deploy API with a specific stage (e.g. ```test``` stage)
 
-Example API Endpoint URL:
-https://<api_id>.execute-api.<aws_region>.amazonaws.com/test/classify
+</details>
+
+Example AWS API Endpoint:
+```https://<api_id>.execute-api.<aws_region>.amazonaws.com/test/classify```
+
+
+### 2.4. Execution for deployed model
+
+Example of a prediction request
+
+bash
+> curl -X POST "https://<api_id>.execute-api.<aws_region>.amazonaws.com/test/classify" -H "Content-Type: application/json" -d '{"features": [[6.5, 3.0, 5.8, 2.2], [6.1, 2.8, 4.7, 1.2]]}'
+
+python
+> python3 inference_api.py --url https://<api_id>.execute-api.<aws_region>.amazonaws.com/test/classify -d '{"features": [[6.5, 3.0, 5.8, 2.2], [6.1, 2.8, 4.7, 1.2]]}'
