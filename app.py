@@ -31,7 +31,7 @@ def predict_class_local(sepl, sepw, petl, petw):
 
 
 def predict_class_aws(sepl, sepw, petl, petw):
-    if AWS_API == "http://localhost:8000":
+    if AWS_API == "http://localhost:8080":
         API_endpoint = AWS_API + "/2015-03-31/functions/function/invocations"
     else:
         API_endpoint = AWS_API + "/test/classify"
