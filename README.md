@@ -18,6 +18,7 @@ Workflow: use of AWS lambda function for deployment
 <b>Menu: </b>
  - [Local development](#1-local-development)
  - [AWS deployment](#2-deployment-to-aws)
+ - [Hugging Face deployment](#3-deployment-to-hugging-face)
 
 
 ## 1. Local development
@@ -145,3 +146,13 @@ bash
 
 python
 > python3 inference_api.py --url https://<api_id>.execute-api.<aws_region>.amazonaws.com/test/classify -d '{"features": [[6.5, 3.0, 5.8, 2.2], [6.1, 2.8, 4.7, 1.2]]}'
+
+
+## 3. Deployment to Hugging Face
+
+This web application is available on Hugging Face
+
+Hugging Face space URL:
+https://huggingface.co/spaces/cvachet/iris_classification_lambda
+
+Note: This space uses the ML model deployed on AWS Lambda
