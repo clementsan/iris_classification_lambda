@@ -12,10 +12,17 @@ short_description: IRIS Classification Lambda
 
 # IRIS classification task with AWS Lambda
 
-Workflow: use of AWS lambda function for deployment
+<b>Aims:</b> Categorization of different species of iris flowers (Setosa, Versicolor, and Virginica) 
+            based on measurements of physical characteristics (sepals and petals).
 
+<b>Architecture:</b>
+ - Front-end: user interface via Gradio library
+ - Back-end: use of AWS Lambda function to run deployed ML model
 
-<b>Menu: </b>
+You can try out our deployed [Hugging Face Space](https://huggingface.co/spaces/cvachet/iris_classification_lambda
+)!
+
+<b>Table of contents: </b>
  - [Local development](#1-local-development)
  - [AWS deployment](#2-deployment-to-aws)
  - [Hugging Face deployment](#3-deployment-to-hugging-face)
