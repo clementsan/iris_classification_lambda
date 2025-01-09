@@ -12,7 +12,16 @@ short_description: IRIS Classification Lambda
 
 # IRIS classification task with AWS Lambda
 
-<b>Aims:</b> Categorization of different species of iris flowers (Setosa, Versicolor, and Virginica) 
+[![](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/cvachet/iris-classification-lambda)](https://hub.docker.com/repository/docker/cvachet/iris-classification-lambda)
+[![code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+
+![example workflow](https://github.com/clementsan/iris_classification_lambda/actions/workflows/ci_python.yml/badge.svg)
+![example workflow](https://github.com/clementsan/iris_classification_lambda/actions/workflows/publish_docker_image.yml/badge.svg)
+![example workflow](https://github.com/clementsan/iris_classification_lambda/actions/workflows/sync_HFSpace.yml/badge.svg)
+
+<b>Aims:</b> Categorization of different species of iris flowers (Setosa, Versicolor, and Virginica)
             based on measurements of physical characteristics (sepals and petals).
 
 <b>Architecture:</b>
@@ -87,7 +96,7 @@ Example: ```iris-classification-lambda```
 
  - Optional for aws cli configuration (to run above commands):
 > aws configure
- 
+
  - Authenticate Docker client to the Amazon ECR registry
 > aws ecr get-login-password --region <aws_region> | docker login --username AWS --password-stdin <aws_account_id>.dkr.ecr.<aws_region>.amazonaws.com
 
@@ -105,7 +114,7 @@ Example: ```iris-classification-lambda```
 
 <details>
 
-<b>Steps</b>: 
+<b>Steps</b>:
  - Create function from container image
 
 Example name: ```iris-classification```
@@ -130,7 +139,7 @@ Advanced notes:
 
 <details>
 
-<b>Steps</b>: 
+<b>Steps</b>:
  - Create a new ```Rest API``` (e.g. ```iris-classification-api```)
  - Add a new resource to the API (e.g. ```/classify```)
  - Add a ```POST``` method to the resource
