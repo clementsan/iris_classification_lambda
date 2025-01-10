@@ -21,21 +21,25 @@ short_description: IRIS Classification Lambda
 ![example workflow](https://github.com/clementsan/iris_classification_lambda/actions/workflows/publish_docker_image.yml/badge.svg)
 ![example workflow](https://github.com/clementsan/iris_classification_lambda/actions/workflows/sync_HFSpace.yml/badge.svg)
 
-<b>Aims:</b> Categorization of different species of iris flowers (Setosa, Versicolor, and Virginica)
+**Aims:** Categorization of different species of iris flowers (Setosa, Versicolor, and Virginica)
             based on measurements of physical characteristics (sepals and petals).
 
-<b>Architecture:</b>
+**Method:** Use of Decision Tree Classifier
+
+**Architecture:**
  - Front-end: user interface via Gradio library
  - Back-end: use of AWS Lambda function to run deployed ML model
 
 You can try out our deployed [Hugging Face Space](https://huggingface.co/spaces/cvachet/iris_classification_lambda
 )!
 
-<b>Table of contents: </b>
+----
+**Table of contents:**
  - [Local development](#1-local-development)
  - [AWS deployment](#2-deployment-to-aws)
  - [Hugging Face deployment](#3-deployment-to-hugging-face)
-
+ - [Docker Hub deployment](#4-deployment-to-docker-hub)
+----
 
 ## 1. Local development
 
@@ -73,7 +77,7 @@ python
 
 Use of Gradio library for web interface
 
-<b>Note:</b> The environment variable ```AWS_API``` should point to the local container
+**Note:** The environment variable ```AWS_API``` should point to the local container
 > export AWS_API=http://localhost:8080
 
 Command line for execution:
@@ -114,7 +118,7 @@ Example: ```iris-classification-lambda```
 
 <details>
 
-<b>Steps</b>:
+**Steps**:
  - Create function from container image
 
 Example name: ```iris-classification```
@@ -139,7 +143,7 @@ Advanced notes:
 
 <details>
 
-<b>Steps</b>:
+**Steps**:
  - Create a new ```Rest API``` (e.g. ```iris-classification-api```)
  - Add a new resource to the API (e.g. ```/classify```)
  - Add a ```POST``` method to the resource
@@ -172,3 +176,11 @@ Hugging Face space URL:
 https://huggingface.co/spaces/cvachet/iris_classification_lambda
 
 Note: This space uses the ML model deployed on AWS Lambda
+
+
+## 4. Deployment to Docker Hub
+
+This web application is available on Docker Hub as a docker image
+
+URL:
+https://hub.docker.com/r/cvachet/iris-classification-lambda
